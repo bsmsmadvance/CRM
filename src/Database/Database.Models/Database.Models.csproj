@@ -1,0 +1,95 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20190302151851_CreateMSTTable.cs" />
+    <Compile Remove="Migrations\20190302152536_CreateMSTTable.cs" />
+    <Compile Remove="Migrations\20190302153551_CreateMSTTable.cs" />
+    <Compile Remove="Migrations\20190302161548_InitDB.cs" />
+    <Compile Remove="Migrations\20190302161748_InitDB.cs" />
+    <Compile Remove="Migrations\20190302161917_InitDB.cs" />
+    <Compile Remove="Migrations\20190302162559_InitDB.cs" />
+    <Compile Remove="Migrations\20190302162732_InitDB.cs" />
+    <Compile Remove="Migrations\20190302164002_InitDB.cs" />
+    <Compile Remove="Migrations\20190302164227_InitDB.cs" />
+    <Compile Remove="Migrations\20190302164540_InitDB.cs" />
+    <Compile Remove="Migrations\20190302164925_InitDB.cs" />
+    <Compile Remove="Migrations\20190302165109_InitDB.cs" />
+    <Compile Remove="Migrations\20190302165339_InitDB.cs" />
+    <Compile Remove="Migrations\20190302165448_InitDB.cs" />
+    <Compile Remove="Migrations\20190302165554_InitDB.cs" />
+    <Compile Remove="Migrations\20190302170041_InitDB.cs" />
+    <Compile Remove="Migrations\20190302175820_InitDB.cs" />
+    <Compile Remove="Migrations\20190302184253_CreateSALSchemaTables.cs" />
+    <Compile Remove="Migrations\20190305053022_UpdateTypoField.cs" />
+    <Compile Remove="Migrations\20190305053241_AddContactAddressTable.cs" />
+    <Compile Remove="Migrations\20190305211140_RenamePromotionRefKey.cs" />
+    <Compile Remove="Migrations\20190308083443_UpdateContactAddressAndPostalCode.cs" />
+    <Compile Remove="Migrations\20190516204327_RevisePromotionTables.cs" />
+    <Compile Remove="Migrations\20190516204327_RevisePromotionTables.Designer.cs" />
+    <Compile Remove="Migrations\20190503094919_ModifyVisitorVehicle.Designer.cs" />
+    <Compile Remove="Migrations\20190503094919_ModifyVisitorVehicle.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove=".gitignore" />
+    <None Remove="appsettings.Development.json" />
+    <None Remove="appsettings.Local.json" />
+    <None Remove="appsettings.Migrate.json" />
+    <None Remove="appsettings.Test.json" />
+    <None Remove="appsettings.UAT.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\newtonsoft.json\11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.Migrate.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="appsettings.Development.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="appsettings.Local.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="appsettings.Test.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="appsettings.UAT.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Migrations\20190503094919_ModifyVisitorVehicle.Designer.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
+    <None Include="Migrations\20190503094919_ModifyVisitorVehicle.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\lib\ErrorHandling\ErrorHandling.csproj" />
+    <ProjectReference Include="..\Database.AuditLogs\Database.AuditLogs.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\CustomQuery\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="DbQueries\" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Database\Database.Models\Database.Models.csproj" />
+    <ProjectReference Include="..\..\Base.DTOs\Base.DTOs.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Filters\" />
+    <Folder Include="Inputs\" />
+    <Folder Include="Outputs\" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Database\Database.Models\Database.Models.csproj" />
+    <ProjectReference Include="..\..\Base.DTOs\Base.DTOs.csproj" />
+    <ProjectReference Include="..\MasterData.Params\MasterData.Params.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\PagingExtensions\PagingExtensions.csproj" />
+    <ProjectReference Include="..\..\..\Reports\Report.Integration\Report.Integration.csproj" />
+  </ItemGroup>
+
+</Project>

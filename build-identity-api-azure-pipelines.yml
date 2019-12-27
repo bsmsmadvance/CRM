@@ -1,0 +1,11 @@
+trigger:
+- backend/build-identity-api
+
+pr: none
+
+pool:
+  vmImage: 'Ubuntu-16.04'
+
+steps:
+- script: cd backend/CRM && docker login -u softever -p softeverywhere docker.io && docker-compose -f docker-compose.yml build crmrevo-identity-api && docker-compose -f docker-compose.yml push crmrevo-identity-api
+  displayName: 'deploy identity api'

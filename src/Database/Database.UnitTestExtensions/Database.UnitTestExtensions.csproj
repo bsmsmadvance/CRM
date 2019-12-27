@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+      <PackageReference Include="EPPlus" Version="4.5.3.1" />
+      <PackageReference Include="Moq.EntityFrameworkCore" Version="2.2.1" />
+      <PackageReference Include="AutoFixture" Version="4.8.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="2.2.3" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Database.Models\Database.Models.csproj" />
+    <ProjectReference Include="..\..\..\lib\CustomAutoFixture\CustomAutoFixture.csproj" />
+  </ItemGroup>
+
+</Project>

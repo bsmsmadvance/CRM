@@ -1,0 +1,76 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <WarningLevel>3</WarningLevel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EPPlus" Version="4.5.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\lib\Common\Common.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\ExcelExtension\ExcelExtension.csproj" />
+    <ProjectReference Include="..\..\..\Database\Database.Models\Database.Models.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\DateTimeExtensions\DateTimeExtensions.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\PagingExtensions\PagingExtensions.csproj" />
+    <ProjectReference Include="..\..\Base.DTOs\Base.DTOs.csproj" />
+    <ProjectReference Include="..\Project.Params\Project.Params.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\FileStorage\FileStorage.csproj" />
+    <ProjectReference Include="..\..\..\Reports\Report.Integration\Report.Integration.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ExcelTemplates\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="ExcelTemplates\ProjectID_Address.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ExcelTemplates\ProjectID_Budget.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ExcelTemplates\ProjectID_LandAppraisalPrice.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ExcelTemplates\ProjectID_MinPrice.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ExcelTemplates\ProjectID_PriceList.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ExcelTemplates\ProjectID_TitleDeed.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ExcelTemplates\ProjectID_Units.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ExcelTemplates\ProjectID_WaiveCustomerSign.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ExcelTemplates\ProjectID_WaiveQC.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ExcelTemplates\QuarterlySaleBudget.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ExcelTemplates\TransferSaleBudget.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ExcelTemplates\UnitMeter.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ExcelTemplates\UnitMeter.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ExcelTemplates\UnitMeterStatus.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ExcelTemplates\ProjectID_InitialFromSAP.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

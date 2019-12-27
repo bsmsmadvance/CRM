@@ -1,0 +1,142 @@
+version: '3.4'
+
+services:
+  crmrevo-core-api:
+    image: crmrevo-core-api:dev
+    build: 
+      context: .
+      dockerfile: src/Services/Core/Core.API/Dockerfile
+    ports:
+      - "5003:5003"
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5003
+      - TZ=Asia/Bangkok
+  crmrevo-masterdata-api:
+    image: crmrevo-masterdata-api:dev
+    build: 
+      context: .
+      dockerfile: src/Services/MasterData/MasterData.API/Dockerfile
+    ports:
+      - "5000:5000"
+    environment: 
+      - ASPNETCORE_URLS=http://+:5000
+      - TZ=Asia/Bangkok
+  crmrevo-project-api:
+    image: crmrevo-project-api:dev
+    build: 
+      context: .
+      dockerfile: src/Services/Project/Project.API/Dockerfile
+    ports:
+      - "5001:5001"
+  crmrevo-project-background:
+    image: crmrevo-project-background:dev
+    build: 
+      context: .
+      dockerfile: src/Services/Project/Project.Background/Dockerfile
+    ports:
+      - "4008:4008"
+    environment: 
+      - ASPNETCORE_URLS=http://+:4008
+      - TZ=Asia/Bangkok
+  crmrevo-customer-api:
+    image: crmrevo-customer-api:dev
+
+    build: 
+      context: .
+      dockerfile: src/Services/Customer/Customer.API/Dockerfile
+    ports:
+      - "5002:5002"
+    environment: 
+      - ASPNETCORE_URLS=http://+:5002
+      - TZ=Asia/Bangkok
+  crmrevo-customer-background:
+    image: crmrevo-customer-background:dev
+    build: 
+      context: .
+      dockerfile: src/Services/Customer/Customer.Background/Dockerfile
+    ports:
+      - "4002:4002"
+    environment: 
+      - ASPNETCORE_URLS=http://+:4002
+      - TZ=Asia/Bangkok
+  crmrevo-promotion-api:
+    image: crmrevo-promotion-api:dev
+    build: 
+      context: .
+      dockerfile: src/Services/Promotion/Promotion.API/Dockerfile
+    ports:
+      - "5004:5004"
+    environment: 
+      - ASPNETCORE_URLS=http://+:5004
+      - TZ=Asia/Bangkok
+  crmrevo-promotion-background:
+    image: crmrevo-promotion-background:dev
+    build: 
+      context: .
+      dockerfile: src/Services/Promotion/Promotion.Background/Dockerfile
+    ports:
+      - "4006:4006"
+    environment: 
+      - ASPNETCORE_URLS=http://+:4006
+      - TZ=Asia/Bangkok
+  crmrevo-identity-api:
+    image: crmrevo-identity-api:dev
+    build: 
+      context: .
+      dockerfile: src/Services/Identity/Identity.API/Dockerfile
+    ports:
+      - "5005:5005"
+    environment: 
+      - ASPNETCORE_URLS=http://+:5005
+      - TZ=Asia/Bangkok
+  crmrevo-identity-background:
+    image: crmrevo-identity-background:dev
+    build: 
+      context: .
+      dockerfile: src/Services/Identity/Identity.Background/Dockerfile
+    ports:
+      - "4005:4005"
+    environment: 
+      - ASPNETCORE_URLS=http://+:4005
+      - TZ=Asia/Bangkok
+  crmrevo-sale-api:
+    image: crmrevo-sale-api:dev
+    build: 
+      context: .
+      dockerfile: src/Services/Sale/Sale.API/Dockerfile
+    ports:
+      - "5006:5006"
+    environment: 
+      - ASPNETCORE_URLS=http://+:5006
+      - TZ=Asia/Bangkok
+  crmrevo-finance-api:
+    image: crmrevo-finance-api:dev
+    build: 
+      context: .
+      dockerfile: src/Services/Finance/Finance.API/Dockerfile
+    ports:
+      - "5007:5007"
+    environment: 
+      - ASPNETCORE_URLS=http://+:5007
+      - TZ=Asia/Bangkok
+  crmrevo-account-api:
+    image: crmrevo-account-api:dev
+    build: 
+      context: .
+      dockerfile: src/Services/Accounting/Accounting.API/Dockerfile
+    ports:
+      - "5008:5008"
+    environment: 
+      - ASPNETCORE_URLS=http://+:5008
+      - TZ=Asia/Bangkok
+  crmrevo-commission-api:
+    image: crmrevo-commission-api:dev
+    build: 
+      context: .
+      dockerfile: src/Services/Commission/Commission.API/Dockerfile
+    ports:
+      - "5009:5009"
+    environment: 
+      - ASPNETCORE_URLS=http://+:5009
+      - TZ=Asia/Bangkok

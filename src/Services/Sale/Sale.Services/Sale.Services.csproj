@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Database\Database.Models\Database.Models.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\DateTimeExtensions\DateTimeExtensions.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\PagingExtensions\PagingExtensions.csproj" />
+    <ProjectReference Include="..\..\Base.DTOs\Base.DTOs.csproj" />
+    <ProjectReference Include="..\..\Finance\Finance.Services\Finance.Services.csproj" />
+    <ProjectReference Include="..\Sale.Params\Sale.Params.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\FileStorage\FileStorage.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\Common\Common.csproj" />
+    <ProjectReference Include="..\..\..\Reports\Report.Integration\Report.Integration.csproj" />
+  </ItemGroup>
+</Project>

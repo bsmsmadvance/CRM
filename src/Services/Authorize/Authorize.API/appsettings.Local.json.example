@@ -1,0 +1,12 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Debug",
+      "System": "Information",
+      "Microsoft": "Information"
+    }
+  },
+  "Http": "https://",
+  "Host": "localhost:44320",
+  "DBConnectionString": "(localdb)\\MSSQLLocalDB;Initial Catalog=AP_CRM;Trusted_Connection=True;"
+}

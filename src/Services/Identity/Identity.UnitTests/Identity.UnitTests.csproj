@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+    <PackageReference Include="xunit" Version="2.4.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
+    <PackageReference Include="Moq.EntityFrameworkCore" Version="2.2.1" />
+    <PackageReference Include="AutoFixture" Version="4.8.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="2.2.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Database\Database.UnitTestExtensions\Database.UnitTestExtensions.csproj" />
+    <ProjectReference Include="..\..\..\Database\Database.Models\Database.Models.csproj" />
+    <ProjectReference Include="..\Identity.Services\Identity.Services.csproj" />
+    <ProjectReference Include="..\Identity.Params\Identity.Params.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\CustomAutoFixture\CustomAutoFixture.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="appsettings.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+</Project>

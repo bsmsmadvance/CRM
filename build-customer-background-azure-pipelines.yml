@@ -1,0 +1,11 @@
+trigger:
+- backend/build-customer-background
+
+pr: none
+
+pool:
+  vmImage: 'Ubuntu-16.04'
+
+steps:
+- script: cd backend/CRM && docker login -u softever -p softeverywhere docker.io && docker-compose -f docker-compose.yml build crmrevo-customer-background && docker-compose -f docker-compose.yml push crmrevo-customer-background
+  displayName: 'deploy customer background'

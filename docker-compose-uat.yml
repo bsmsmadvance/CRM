@@ -1,0 +1,53 @@
+version: '3.4'
+
+services:
+  crmrevo-core-api:
+    image: docker.io/softever/crmrevo-core-api:uat1
+    build: 
+      context: .
+      dockerfile: src/Services/Core/Core.API/Dockerfile
+    ports:
+      - "5003:5003"
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=UAT
+      - ASPNETCORE_URLS=http://+:5003
+  crmrevo-masterdata-api:
+    image: docker.io/softever/crmrevo-masterdata-api:uat1
+    build: 
+      context: .
+      dockerfile: src/Services/MasterData/MasterData.API/Dockerfile
+    ports:
+      - "5000:5000"
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=UAT
+      - ASPNETCORE_URLS=http://+:5000
+  crmrevo-project-api:
+    image: docker.io/softever/crmrevo-project-api:uat1
+    build: 
+      context: .
+      dockerfile: src/Services/Project/Project.API/Dockerfile
+    ports:
+      - "5001:5001"
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=UAT
+      - ASPNETCORE_URLS=http://+:5001
+  crmrevo-customer-api:
+    image: docker.io/softever/crmrevo-customer-api:uat1
+    build: 
+      context: .
+      dockerfile: src/Services/Customer/Customer.API/Dockerfile
+    ports:
+      - "5002:5002"
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=UAT
+      - ASPNETCORE_URLS=http://+:5002
+  crmrevo-promotion-api:
+    image: docker.io/softever/crmrevo-promotion-api:uat1
+    build: 
+      context: .
+      dockerfile: src/Services/Promotion/Promotion.API/Dockerfile
+    ports:
+      - "5004:5004"
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=UAT
+      - ASPNETCORE_URLS=http://+:5004

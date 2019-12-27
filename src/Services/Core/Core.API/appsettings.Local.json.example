@@ -1,0 +1,19 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Debug",
+      "System": "Information",
+      "Microsoft": "Information"
+    }
+  },
+  "Http": "http://",
+  "Host": "localhost:44354",
+  "DBConnectionString": "Server=softever.co.th;Database=AP_CRM_LOCAL;User Id=sa;Password=@minMitDev02;",
+  "Minio": {
+    "Endpoint": "192.168.2.29:9001",
+    "WithSSL": false,
+    "AccessKey": "XNTYE7HIMF6KK4BVEIXA",
+    "SecretKey": "naD+esQ+uV7+xwfF3bPfAn5iC7C1XUyXeM8HkBlO",
+    "DefaultBucket": "temp"
+  }
+}
