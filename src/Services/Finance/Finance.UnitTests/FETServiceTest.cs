@@ -10,7 +10,7 @@ using PagingExtensions;
 using System;
 using Xunit;
 using ErrorHandling;
-using Nancy.Json;
+//using Nancy.Json;
 using Newtonsoft.Json;
 
 namespace Finance.UnitTests
@@ -53,9 +53,9 @@ namespace Finance.UnitTests
 
                         var results = await service.GetFETListAsync(filter, pageParam, sortByParam);
 
-                        var json = new JavaScriptSerializer().Serialize(results.FETs);
+                        //var json = new JavaScriptSerializer().Serialize(results.FETs);
 
-                        Console.WriteLine(json);
+                        //Console.WriteLine(json);
 
                         return;
                     }
@@ -175,7 +175,7 @@ namespace Finance.UnitTests
 
                             //FETDTO model = new JsonConvert.DeserializeObject<FETDTO>(json);
 
-                            FETDTO xx = new JavaScriptSerializer().Deserialize<FETDTO>(json);
+                            //FETDTO xx = new JavaScriptSerializer().Deserialize<FETDTO>(json);
 
                             return;
                             tran.Rollback();

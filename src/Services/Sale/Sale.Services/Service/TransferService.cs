@@ -677,5 +677,16 @@ namespace Sale.Services.Service
 
             return result;
         }
+
+
+        public async Task<Transfer> GetTransferDataAsync(Guid agreementId)
+        {
+            var model = await DB.Transfers.Where(e => e.AgreementID == agreementId).FirstOrDefaultAsync();
+          
+            var result = model ?? new Transfer();
+
+            return result;
+        }
+
     }
 }

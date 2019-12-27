@@ -11,7 +11,7 @@ using System;
 using Xunit;
 using System.Linq;
 using ErrorHandling;
-using Nancy.Json;
+//using Nancy.Json;
 using Newtonsoft.Json;
 
 namespace Finance.UnitTests
@@ -54,9 +54,9 @@ namespace Finance.UnitTests
 
                         var results = await service.GetReceiptInfoListAsync(filter, pageParam, sortByParam);
 
-                        var json = new JavaScriptSerializer().Serialize(results.ReceiptInfos);
+                        //var json = new JavaScriptSerializer().Serialize(results.ReceiptInfos);
 
-                        Console.WriteLine(json);
+                        //Console.WriteLine(json);
 
                         return;
                     }

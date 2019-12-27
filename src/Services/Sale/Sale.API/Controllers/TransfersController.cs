@@ -38,28 +38,41 @@ namespace Sale.API.Controllers
         /// <summary>
         /// ดึงข้อมูลโอนกรรมสิทธิ์ (โครงการ/ค่าธรรมเนียม)   
         /// </summary>
-        /// <param name="id">transferId</param>
+        /// <param name="id">agreementId</param>
         /// <returns></returns>
         [HttpGet("GetTransfer/{id}")]
         [ProducesResponseType(200, Type = typeof(TransferDTO))]
         public async Task<IActionResult> GetTransferAsync([FromRoute]Guid id)
         {
-            var result = await TransferService.GetTransferAsync(id);
+            TransferDTO result = null;
+
+            var model = await TransferService.GetTransferDataAsync(id);
+
+            if (!string.IsNullOrEmpty(model.TransferNo))
+            {
+                id = model.ID;
+                result = await TransferService.GetTransferAsync(id);
+            }
+            else
+            {
+                result = await TransferService.GetTransferDrafAsync(id);
+            }
+
             return Ok(result);
         }
 
-        /// <summary>
-        /// ดึงข้อมูลเพื่อโอนกรรมสิทธิ์ของสัญญา
-        /// </summary>
-        /// <param name="id">agreementId</param>
-        /// <returns></returns>
-        [HttpGet("GetTransferDraf/{id}")]
-        [ProducesResponseType(200, Type = typeof(TransferDTO))]
-        public async Task<IActionResult> GetTransferDrafAsync([FromRoute]Guid id)
-        {
-            var result = await TransferService.GetTransferDrafAsync(id);
-            return Ok(result);
-        }
+        ///// <summary>
+        ///// ดึงข้อมูลเพื่อโอนกรรมสิทธิ์ของสัญญา
+        ///// </summary>
+        ///// <param name="id">agreementId</param>
+        ///// <returns></returns>
+        //[HttpGet("GetTransferDraf/{id}")]
+        //[ProducesResponseType(200, Type = typeof(TransferDTO))]
+        //public async Task<IActionResult> GetTransferDrafAsync([FromRoute]Guid id)
+        //{
+        //    var result = await TransferService.GetTransferDrafAsync(id);
+        //    return Ok(result);
+        //}
 
         /// <summary>
         /// ดึงข้อมูลโอนกรรมสิทธิ์ (ราคา)   
@@ -77,13 +90,26 @@ namespace Sale.API.Controllers
         /// <summary>
         /// ดึงข้อมูลรายการค่าใช้จ่าย   
         /// </summary>
-        /// <param name="id">transferId</param>
+        /// <param name="id">agreementId</param>
         /// <returns></returns>
         [HttpGet("GetTransferFee/{id}")]
         [ProducesResponseType(200, Type = typeof(List<TransferExpenseListDTO>))]
         public async Task<IActionResult> GetTransferFeeAsync([FromRoute]Guid id)
         {
-            var result = await TransferService.GetTransferFeeAsync(id);
+            List<TransferExpenseListDTO> result = null;
+
+            var model = await TransferService.GetTransferDataAsync(id);
+
+            if (!string.IsNullOrEmpty(model.TransferNo))
+            {
+                id = model.ID;
+                result = await TransferService.GetTransferFeeAsync(id);
+            }
+            else
+            {
+                result = await TransferService.GetTransferFeeDrafAsync(id);
+            }
+
             return Ok(result);
         }
 
@@ -119,18 +145,18 @@ namespace Sale.API.Controllers
             return Ok(result);
         }
 
-        /// <summary>
-        /// ดึงข้อมูลผู้โอนกรรมสิทธิ์ จากผู้ทำสัญญา  
-        /// </summary>
-        /// <param name="id">agreementId</param>
-        /// <returns></returns>
-        [HttpGet("GetTransferOwnerDraf/{id}")]
-        [ProducesResponseType(200, Type = typeof(AgreementOwnerDTO))]
-        public async Task<IActionResult> GetTransferOwnerDrafAsync([FromRoute]Guid id)
-        {
-            var result = await TransferService.GetTransferOwnerDrafAsync(id);
-            return Ok(result);
-        }
+        ///// <summary>
+        ///// ดึงข้อมูลผู้โอนกรรมสิทธิ์ จากผู้ทำสัญญา  
+        ///// </summary>
+        ///// <param name="id">agreementId</param>
+        ///// <returns></returns>
+        //[HttpGet("GetTransferOwnerDraf/{id}")]
+        //[ProducesResponseType(200, Type = typeof(AgreementOwnerDTO))]
+        //public async Task<IActionResult> GetTransferOwnerDrafAsync([FromRoute]Guid id)
+        //{
+        //    var result = await TransferService.GetTransferOwnerDrafAsync(id);
+        //    return Ok(result);
+        //}
 
         /// <summary>
         /// ดึงข้อมูลผู้โอนกรรมสิทธิ์ 
@@ -162,13 +188,26 @@ namespace Sale.API.Controllers
         /// <summary>
         /// ดึงรายการข้อมูลผู้โอนกรรมสิทธิ์
         /// </summary>
-        /// <param name="id">transferId</param>
+        /// <param name="id">agreementId</param>
         /// <returns></returns>
         [HttpGet("GetTransferOwnerList/{id}")]
         [ProducesResponseType(200, Type = typeof(List<TransferOwnerDTO>))]
         public async Task<IActionResult> GetTransferOwnerListAsync([FromRoute]Guid id)
         {
-            var result = await TransferService.GetTransferOwnerListAsync(id);
+            List<TransferOwnerDTO> result = null;
+
+            var model = await TransferService.GetTransferDataAsync(id);
+
+            if (!string.IsNullOrEmpty(model.TransferNo))
+            {
+                id = model.ID;
+                result = await TransferService.GetTransferOwnerListAsync(id);
+            }
+            else
+            {
+                result = await TransferService.GetTransferOwnerDrafListAsync(id);
+            }
+
             return Ok(result);
         }
 

@@ -56,6 +56,18 @@ namespace Promotion.Services.Service
             return result;
         }
 
+        public async Task<Guid> GetTransferPromotionIDAsync(Guid agreementId)
+        {
+            var agreement = await DB.Agreements.Where(o => o.ID == agreementId).FirstOrDefaultAsync();
+
+            var model = await DB.TransferPromotions
+                    //.Include(o=>o.Booking)
+                    .Where(o => o.BookingID == agreement.BookingID).FirstOrDefaultAsync();
+            
+            return model.ID;
+        }
+
+
         public async Task<List<TransferPromotionItemDTO>> GetTransferPromotionItemListAsync(Guid transferPromotionId)
         {
             var result = new List<TransferPromotionItemDTO>();
@@ -577,14 +589,14 @@ namespace Promotion.Services.Service
 
                 await DB.TransferPromotionExpenses.AddAsync(expenseModel);
                 await DB.SaveChangesAsync();
-                
+
             }
             #endregion
 
             #endregion
 
             var result = await TransferPromotionDTO.CreateFromModelAsync(model, DB);
-            return result?? new TransferPromotionDTO();
+            return result ?? new TransferPromotionDTO();
         }
 
         public async Task<TransferPromotionDTO> UpdateAllowTransferDiscountAsync(Guid transferPromotionId, TransferPromotionDTO input)
@@ -598,7 +610,7 @@ namespace Promotion.Services.Service
             await DB.SaveChangesAsync();
 
             var result = await TransferPromotionDTO.CreateFromModelAsync(model, DB);
-            return result?? new TransferPromotionDTO();
+            return result ?? new TransferPromotionDTO();
         }
 
         public async Task<TransferPromotionDTO> UpdateAllowTransferDiscountOver3PercentAsync(Guid transferPromotionId, TransferPromotionDTO input)
@@ -621,13 +633,17 @@ namespace Promotion.Services.Service
                                 .Where(o => o.ID == transferPromotionId)
                                 .Select(o => o.BookingID).FirstOrDefaultAsync();
 
+            var MinPriceBudgetWorkflowStageMasterCenterID = await DB.MasterCenters
+                .Where(o => o.MasterCenterGroupKey == "MinPriceBudgetWorkflowStage" && o.Key == MinPriceBudgetWorkflowStageKeys.PromotionTransfer).Select(o => o.ID).FirstAsync();
+            
             var minPriceBudget = await DB.MinPriceBudgetWorkflows
-                                        .Include(o => o.MinPriceBudgetWorkflowStage)
-                                        .Where(o => o.BookingID == bookingID
-                                                && o.IsRecalled == false
-                                                && o.IsApproved == null
-                                                && o.MinPriceBudgetWorkflowStage.Key == MinPriceBudgetWorkflowStageKeys.PromotionTransfer).FirstOrDefaultAsync();
-
+                                            .Where(o => o.BookingID == bookingID
+                                                    && o.IsRecalled == false
+                                                    && (o.IsApproved ?? false) == false
+                                                    && o.MinPriceBudgetWorkflowStageMasterCenterID == MinPriceBudgetWorkflowStageMasterCenterID
+                                                )
+                                         .Include(o => o.MinPriceBudgetWorkflowStage)
+                                         .FirstOrDefaultAsync();
             var result = new BooleanResult
             {
                 Result = (minPriceBudget != null) ? true : false

@@ -51,6 +51,27 @@ namespace Promotion.UnitTests
         }
 
         [Fact]
+        public async void GetTransferPromotionAsync()
+        {
+            using (var factory = new UnitTestDbContextFactory())
+            {
+                var db = factory.CreateContext();
+                var strategy = db.Database.CreateExecutionStrategy();
+                await strategy.ExecuteAsync(async () =>
+                {
+                    using (var tran = db.Database.BeginTransaction())
+                    {
+
+                        var service = new TransferPromotionService(db);
+                        var results = await service.GetTransferPromotionIDAsync(new Guid("2D4031C9-08B4-482E-BE8D-309B97F22E65"));
+
+                        tran.Rollback();
+                    }
+                });
+            }
+        }
+
+        [Fact]
         public async void GetTransferPromotionItemListAsync()
         {
             using (var factory = new UnitTestDbContextFactory())
@@ -133,7 +154,7 @@ namespace Promotion.UnitTests
                 });
             }
         }
-
+        
         [Fact]
         public async void CreateTransferPromotionDataAsync()
         {
@@ -313,7 +334,30 @@ namespace Promotion.UnitTests
             }
         }
 
+        #region Sprint3
 
+        [Fact]
+        public async void IsWaitingMinPriceApproveAsync()
+        {
+            using (var factory = new UnitTestDbContextFactory())
+            {
+                var db = factory.CreateContext();
+                var strategy = db.Database.CreateExecutionStrategy();
+                await strategy.ExecuteAsync(async () =>
+                {
+                    using (var tran = db.Database.BeginTransaction())
+                    {
+
+                        var service = new TransferPromotionService(db);
+                        var results = await service.IsWaitingMinPriceApproveAsync(new Guid("CA8A6976-4431-441D-A856-32760A39A792"));
+
+                        tran.Rollback();
+                    }
+                });
+            }
+        }
+
+        #endregion
 
     }
 }

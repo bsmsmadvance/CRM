@@ -47,10 +47,23 @@ namespace Sale.UnitTests
                 {
                     using (var tran = db.Database.BeginTransaction())
                     {
-                        var id = await db.Transfers.Select(o => o.ID).FirstAsync();
+                        var id = await db.Transfers.Select(o => o.AgreementID).FirstAsync() ?? new Guid();
 
                         var service = new TransferService(db, Configuration);
-                        var results = await service.GetTransferAsync(id);
+
+                        TransferDTO result = null;
+
+                        var model = await service.GetTransferDataAsync(id);
+
+                        if (!string.IsNullOrEmpty(model.TransferNo))
+                        {
+                            id = model.ID;
+                            result = await service.GetTransferAsync(id);
+                        }
+                        else
+                        {
+                            result = await service.GetTransferDrafAsync(id);
+                        }
 
                         tran.Rollback();
                     }
@@ -58,27 +71,27 @@ namespace Sale.UnitTests
             }
         }
 
-        [Fact]
-        public async void GetTransferDrafAsync()
-        {
-            using (var factory = new UnitTestDbContextFactory())
-            {
-                var db = factory.CreateContext();
-                var strategy = db.Database.CreateExecutionStrategy();
-                await strategy.ExecuteAsync(async () =>
-                {
-                    using (var tran = db.Database.BeginTransaction())
-                    {
-                        var id = await db.Agreements.Select(o => o.ID).FirstAsync();
+        //[Fact]
+        //public async void GetTransferDrafAsync()
+        //{
+        //    using (var factory = new UnitTestDbContextFactory())
+        //    {
+        //        var db = factory.CreateContext();
+        //        var strategy = db.Database.CreateExecutionStrategy();
+        //        await strategy.ExecuteAsync(async () =>
+        //        {
+        //            using (var tran = db.Database.BeginTransaction())
+        //            {
+        //                var id = await db.Agreements.Select(o => o.ID).FirstAsync();
 
-                        var service = new TransferService(db, Configuration);
-                        var results = await service.GetTransferDrafAsync(id);
+        //                var service = new TransferService(db, Configuration);
+        //                var results = await service.GetTransferDrafAsync(id);
 
-                        tran.Rollback();
-                    }
-                });
-            }
-        }
+        //                tran.Rollback();
+        //            }
+        //        });
+        //    }
+        //}
 
         [Fact]
         public async void GetTransferPriceAsync()
@@ -116,7 +129,20 @@ namespace Sale.UnitTests
                         var id = await db.Transfers.Select(o => o.ID).FirstAsync();
 
                         var service = new TransferService(db, Configuration);
-                        var results = await service.GetTransferFeeAsync(id);
+
+                        List<TransferExpenseListDTO> result = null;
+
+                        var model = await service.GetTransferDataAsync(id);
+
+                        if (!string.IsNullOrEmpty(model.TransferNo))
+                        {
+                            id = model.ID;
+                            result = await service.GetTransferFeeAsync(id);
+                        }
+                        else
+                        {
+                            result = await service.GetTransferFeeDrafAsync(id);
+                        }
 
                         tran.Rollback();
                     }
@@ -168,27 +194,27 @@ namespace Sale.UnitTests
             }
         }
 
-        [Fact]
-        public async void GetTransferOwnerDrafAsync()
-        {
-            using (var factory = new UnitTestDbContextFactory())
-            {
-                var db = factory.CreateContext();
-                var strategy = db.Database.CreateExecutionStrategy();
-                await strategy.ExecuteAsync(async () =>
-                {
-                    using (var tran = db.Database.BeginTransaction())
-                    {
-                        var id = await db.Agreements.Select(o => o.ID).FirstAsync();
+        //[Fact]
+        //public async void GetTransferOwnerDrafAsync()
+        //{
+        //    using (var factory = new UnitTestDbContextFactory())
+        //    {
+        //        var db = factory.CreateContext();
+        //        var strategy = db.Database.CreateExecutionStrategy();
+        //        await strategy.ExecuteAsync(async () =>
+        //        {
+        //            using (var tran = db.Database.BeginTransaction())
+        //            {
+        //                var id = await db.Agreements.Select(o => o.ID).FirstAsync();
 
-                        var service = new TransferService(db, Configuration);
-                        var results = await service.GetTransferOwnerDrafAsync(id);
+        //                var service = new TransferService(db, Configuration);
+        //                var results = await service.GetTransferOwnerDrafAsync(id);
 
-                        tran.Rollback();
-                    }
-                });
-            }
-        }
+        //                tran.Rollback();
+        //            }
+        //        });
+        //    }
+        //}
 
         [Fact]
         public async void GetTransferOwnerAsync()
@@ -252,7 +278,20 @@ namespace Sale.UnitTests
                         var id = await db.Transfers.Select(o => o.ID).FirstAsync();
 
                         var service = new TransferService(db, Configuration);
-                        var results = await service.GetTransferOwnerListAsync(id);
+
+                        List<TransferOwnerDTO> result = null;
+
+                        var model = await service.GetTransferDataAsync(id);
+
+                        if (!string.IsNullOrEmpty(model.TransferNo))
+                        {
+                            id = model.ID;
+                            result = await service.GetTransferOwnerListAsync(id);
+                        }
+                        else
+                        {
+                            result = await service.GetTransferOwnerDrafListAsync(id);
+                        }
 
                         tran.Rollback();
                     }
@@ -303,8 +342,7 @@ namespace Sale.UnitTests
                 });
             }
         }
-
-
+        
         [Fact]
         public async void CreateTransferDataAsync()
         {

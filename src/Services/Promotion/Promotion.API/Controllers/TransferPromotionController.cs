@@ -18,6 +18,7 @@ using Promotion.Services.Service;
 
 namespace Promotion.API.Controllers
 {
+    [Route("api/[controller]")]
     public class TransferPromotionsController : BaseController
     {
         private readonly ITransferPromotionService TransferPromotionService;
@@ -46,13 +47,37 @@ namespace Promotion.API.Controllers
         /// <summary>
         /// ดึงข้อมูลเบื้องต้นและราคาโปรโมชั่นส่งเสริมการโอน/โครงการ/ลูกค้า/พนักงานขาย ก่อนตั้งเรื่อง
         /// </summary>
-        /// <param name="transferPromotionId"></param>
+        /// <param name="agreementId"></param>
         /// <returns></returns>
         [HttpGet("GetTransferPromotionDrafData")]
         [ProducesResponseType(200, Type = typeof(TransferPromotionDTO))]
-        public async Task<IActionResult> GetTransferPromotionDrafDataAsync([FromQuery] Guid transferPromotionId)
+        public async Task<IActionResult> GetTransferPromotionDrafDataAsync([FromQuery] Guid agreementId)
         {
-            var result = await TransferPromotionService.GetTransferPromotionDrafDataAsync(transferPromotionId);
+            var result = await TransferPromotionService.GetTransferPromotionDrafDataAsync(agreementId);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// ดึงข้อมูลโปรโมชั่นส่งเสริมการโอน
+        /// </summary>
+        /// <param name="agreementId"></param>
+        /// <returns></returns>
+        [HttpGet("GetTransferPromotion")]
+        [ProducesResponseType(200, Type = typeof(TransferPromotionDTO))]
+        public async Task<IActionResult> GetTransferPromotionAsync([FromQuery] Guid agreementId)
+        {
+            var result = new TransferPromotionDTO();
+            var transferPromotionId = await TransferPromotionService.GetTransferPromotionIDAsync(agreementId);
+
+            if (transferPromotionId == null)
+            {
+                result = await TransferPromotionService.GetTransferPromotionDrafDataAsync(agreementId);
+            }
+            else
+            {
+                result = await TransferPromotionService.GetTransferPromotionDataAsync(transferPromotionId);
+            }
+
             return Ok(result);
         }
 

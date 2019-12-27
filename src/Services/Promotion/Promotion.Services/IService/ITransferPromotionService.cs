@@ -20,9 +20,16 @@ namespace Promotion.Services.IService
         /// <summary>
         /// ดึงข้อมูลเบื้องต้นและราคาโปรโมชั่นส่งเสริมการโอน/โครงการ/ลูกค้า/พนักงานขาย  (ก่อนตั้งเรื่อง)
         /// </summary>
-        /// <param name="transferPromotionId"></param>
+        /// <param name="agreementId"></param>
         /// <returns></returns>
         Task<TransferPromotionDTO> GetTransferPromotionDrafDataAsync(Guid agreementId);
+
+        /// <summary>
+        /// ดึงค่ารหัส TransferPromotionID 
+        /// </summary>
+        /// <param name="agreementId"></param>
+        /// <returns></returns>
+        Task<Guid> GetTransferPromotionIDAsync(Guid agreementId);
 
         /// <summary>
         /// ดึงข้อมูลรายการโปรโมชั่นส่งเสริมการโอน

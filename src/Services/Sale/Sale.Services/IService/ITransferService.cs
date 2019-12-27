@@ -161,5 +161,13 @@ namespace Sale.Services
         /// <param name="projectId"></param>
         /// <returns></returns>
         Task<ContactAddressDTO> CopyContactAddressAsync(Guid contactId);
+
+        /// <summary>
+        /// ดึงข้อมูลโอน     
+        /// </summary>
+        /// <param name="agreementId"></param>
+        /// <returns></returns>
+        Task<Transfer> GetTransferDataAsync(Guid agreementId);
+
     }
 }
